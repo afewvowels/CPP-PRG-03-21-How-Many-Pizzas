@@ -20,21 +20,36 @@ using namespace std;
 
 int main()
 {
-    float fltPizzaDiamter,
-    fltPizzaRadius,
-    fltPizzaArea,
-    fltPizzaSlicesTotal,
-    fltPizzas,
-    fltPartyGuests;
-    
     float const FLT_PIZZA_SLICE_AREA = 14.125f,
-    FLT_PI = 3.14159f,
-    FLT_SLICES_PER_GUEST = 4.0f;
+                FLT_PI = 3.14159f,
+                FLT_SLICES_PER_GUEST = 4.0f;
+    
+    float fltPizzaDiamter,
+          fltPizzaRadius,
+          fltPizzaArea,
+          fltPizzaSlicesTotal,
+          fltPizzas,
+          fltPartyGuests;
     
     cout << "Please enter the diameter of your pizza: " << endl;
     cin >> fltPizzaDiamter;
+    while(!cin || fltPizzaDiamter < 0 || fltPizzaDiamter > 100)
+    {
+        cout << "Please enter a diameter between 0 and 100 inches:\n";
+        cin.clear();
+        cin.ignore();
+        cin >> fltPizzaDiamter;
+    }
+    
     cout << "Please enter how many people will be attending your party: " << endl;
     cin >> fltPartyGuests;
+    while(!cin || fltPartyGuests < 0 || fltPartyGuests > 1000)
+    {
+        cout << "Please enter a number of guests between 0 and 1000:\n";
+        cin.clear();
+        cin.ignore();
+        cin >> fltPartyGuests;
+    }
     
     fltPizzaRadius = fltPizzaDiamter / 2.0f;
     
@@ -45,9 +60,8 @@ int main()
     fltPizzas = (fltPartyGuests * FLT_SLICES_PER_GUEST) / fltPizzaSlicesTotal;
     
     cout << "You will need to order "
-    << setprecision(0) << fixed << fltPizzas << endl
-    << setprecision(1) << fixed << fltPizzaDiamter << " inch"
-    << " pizzas." << endl;
+         << setprecision(0) << fixed << fltPizzas << endl
+         << setprecision(1) << fixed << fltPizzaDiamter << " inch pizzas." << endl;
     
     return 0;
 }
